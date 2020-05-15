@@ -23,7 +23,10 @@ class App extends React.Component {
         {
           body: response,
         },
-      ));
+      ))
+      .catch(err =>{
+        console.log(`There was an error ${err}`)
+      });
   }
 
   render() {
