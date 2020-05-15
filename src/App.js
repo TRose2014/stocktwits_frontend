@@ -16,6 +16,7 @@ class App extends React.Component {
   componentDidMount() {
     fetch(`${this.state.heroku_url}/user`, {
       credentials: 'include', // fetch won't send cookies unless you set credentials
+      mode: 'no-cors' 
     })
       .then((response) => response.json())
       .then((response) => this.setState(
