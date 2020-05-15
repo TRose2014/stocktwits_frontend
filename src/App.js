@@ -8,7 +8,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      body: {}, // this is the body from /user
+      body: {'test': 'test'}, // this is the body from /user
       heroku_url: 'https://stockwits-backend.herokuapp.com'
     };
   }
@@ -24,7 +24,7 @@ class App extends React.Component {
           body: response,
         },
       ))
-      .catch(err =>{
+      .catch(err => {
         console.log(err);
       });
   }
