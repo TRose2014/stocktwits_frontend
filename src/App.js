@@ -26,6 +26,7 @@ class App extends React.Component {
   }
 
   render() {
+    console.log('response', this.state.body)
     return (
       <div id="App">
         <header>
