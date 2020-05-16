@@ -7,25 +7,19 @@ import './index.css';
 class App extends React.Component {
   constructor(props) {
     super(props);
-    // this.test = this.test.bind(this)
     this.state = {
       body: {}, // this is the body from /user
-      heroku_url: 'https://stockwits-backend.herokuapp.com',
+      heroku_url: 'https://stockwits-backend.herokuapp.com'
     };
   }
 
-  // test() {
-  //   fetch(`${this.state.heroku_url}/user`, {
-      
-  //   })
-  //   .then((response) => console.log('response', response))
-  //   .catch(err => {
-  //     console.log(err);
-  //   });
-  // }
-
   componentDidMount() {
-    fetch(`${this.state.heroku_url}/user`)
+    fetch(`${this.state.heroku_url}/user`, {
+      credentials: 'include', // fetch won't send cookies unless you set credentials
+      headers: {
+        "Content-Type": "application/json"
+      }
+    })
       .then((response) => console.log('response', response))
       .then((response) => response.json())
       .then((response) => this.setState(
@@ -39,7 +33,7 @@ class App extends React.Component {
   }
 
   render() {
-    console.log('response2', this.state.body)
+    console.log('response', this.state.body)
     return (
       <div id="App">
         <header>
@@ -48,7 +42,6 @@ class App extends React.Component {
           <LogInOut body={this.state.body} uri={this.state.heroku_url} />
         </header>
           <SearchResults />
-          {/* <button onClick={this.test}>Test</button> */}
       </div>
     );
   }
