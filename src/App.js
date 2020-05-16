@@ -7,19 +7,25 @@ import './index.css';
 class App extends React.Component {
   constructor(props) {
     super(props);
+    // this.test = this.test.bind(this)
     this.state = {
       body: {}, // this is the body from /user
-      heroku_url: 'https://stockwits-backend.herokuapp.com'
+      heroku_url: 'https://stockwits-backend.herokuapp.com',
     };
   }
 
+  // test() {
+  //   fetch(`${this.state.heroku_url}/user`, {
+      
+  //   })
+  //   .then((response) => console.log('response', response))
+  //   .catch(err => {
+  //     console.log(err);
+  //   });
+  // }
+
   componentDidMount() {
-    fetch(`${this.state.heroku_url}/user`, {
-      credentials: 'include', // fetch won't send cookies unless you set credentials
-      headers: {
-        "Content-Type": "application/json"
-      }
-    })
+    fetch(`${this.state.heroku_url}/user`)
       .then((response) => console.log('response', response))
       .then((response) => response.json())
       .then((response) => this.setState(
@@ -40,8 +46,9 @@ class App extends React.Component {
           <h1>StockWits</h1>
           <Greeting body={this.state.body} />
           <LogInOut body={this.state.body} uri={this.state.heroku_url} />
-          <SearchResults />
         </header>
+          <SearchResults />
+          {/* <button onClick={this.test}>Test</button> */}
       </div>
     );
   }
