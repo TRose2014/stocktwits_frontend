@@ -22,7 +22,10 @@ export default class SearchResults extends React.Component {
     const token = this.state.results[1];
     console.log('token', token);
 
-    fetch(`https://api.stocktwits.com/api/2/search/symbols.json?access_token=${token}&q=${this.state.name}`)
+    fetch(`https://api.stocktwits.com/api/2/search/symbols.json?access_token=${token}&q=${this.state.name}`, {
+      method: 'GET',
+      mode: 'no-cors'
+    })
       .then(response => response.json())
       .then(data => this.setState({
         info: data.results[0]
