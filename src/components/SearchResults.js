@@ -107,9 +107,9 @@ export default class SearchResults extends React.Component {
             {this.state.tweets.map((item, index) => {
                 return ( 
                 <div id={index}>
-                  <p>{item.body}</p>
                   <h4>{item.user.username}</h4>
                   <img src={item.user.avatar_url} alt={item.user.username} photo />
+                  <p>{item.body}</p>
                 </div>
                     )
               })}
