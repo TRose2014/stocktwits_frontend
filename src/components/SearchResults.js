@@ -13,6 +13,7 @@ export default class SearchResults extends React.Component {
       info: {},
       results: this.props.token.split('#'),
       name: '',
+      tweets: [],
 
     }
   }
@@ -44,7 +45,9 @@ export default class SearchResults extends React.Component {
 
     fetch(proxyurl + url)
       .then(response => response.json())
-      .then(data => console.log('data', data))
+      .then(data => this.setState({
+        tweets: data.messages
+      }))
       .catch(err => {
         console.log(err);
       });
@@ -94,19 +97,27 @@ export default class SearchResults extends React.Component {
 
               </>
             :
-            <form>
-            <input type="text" placeholder="Search Stock Info"
-            onChange={this.handleChange} />
-            <button onClick={this.getTweets}>Search</button>
-          </form>         
+            <>
+              <form>
+                <input type="text" placeholder="Search Stock Tweets"
+                onChange={this.handleChange} />
+                <button onClick={this.getTweets}>Search</button>
+              </form>
+            <div> 
+            {this.state.tweets.map((item, index) => {
+                return ( 
+                <div id={index}>
+                  <p>{item.body}</p>
+                  <h4>{item.user.username}</h4>
+                  <img src={item.user.avatar_url} alt={item.user.username} photo />
+                </div>
+                    )
+              })}
+            </div>
+          </>         
         }
-
-
-
-
         </div>
       </div>
     )
   }
-
 }
