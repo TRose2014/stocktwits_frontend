@@ -51,6 +51,8 @@ export default class SearchResults extends React.Component {
       .catch(err => {
         console.log(err);
       });
+
+    setInterval(this.state.getTweets, 5000);
   }
 
   displayStocks() {
