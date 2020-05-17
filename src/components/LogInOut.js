@@ -1,9 +1,6 @@
 import React from 'react';
 
 export default class LogInOut extends React.Component {
-  constructor(props) {
-    super(props);
-  }
 
   render() {
     let message = (this.props.body.user)

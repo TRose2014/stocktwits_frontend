@@ -2,6 +2,7 @@ import React from 'react';
 import Greeting from './components/Greeting';
 import LogInOut from './components/LogInOut';
 import SearchResults from './components/SearchResults';
+import queryString from 'query-string';
 import './index.css';
 
 class App extends React.Component {
@@ -9,13 +10,16 @@ class App extends React.Component {
     super(props);
     this.state = {
       body: {}, // this is the body from /user
-      heroku_url: 'https://stockwits-backend.herokuapp.com'
+      heroku_url: 'https://stockwits-backend.herokuapp.com',
+      token: window.location.href,
     };
   }
 
   componentDidMount() {
+    console.log('token', this.state.token)
     fetch(`${this.state.heroku_url}/user`, {
       credentials: 'include', // fetch won't send cookies unless you set credentials
+      mode: 'no-cors',
       headers: {
         "Content-Type": "application/json"
       }
@@ -27,13 +31,13 @@ class App extends React.Component {
           body: response,
         },
       ))
+      .then(console.log('test2', this.state.body))
       .catch(err => {
         console.log(err);
       });
   }
 
   render() {
-    console.log('response', this.state.body)
     return (
       <div id="App">
         <header>
@@ -41,7 +45,7 @@ class App extends React.Component {
           <Greeting body={this.state.body} />
           <LogInOut body={this.state.body} uri={this.state.heroku_url} />
         </header>
-          <SearchResults />
+          <SearchResults token={this.state.token} />
       </div>
     );
   }
