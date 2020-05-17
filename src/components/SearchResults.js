@@ -22,9 +22,10 @@ export default class SearchResults extends React.Component {
     const token = this.state.results[1];
     console.log('token', token);
 
-    fetch(`https://api.stocktwits.com/api/2/search/symbols.json?access_token=${token}&q=${this.state.name}`, {
-      // mode: 'no-cors'
-    })
+    const proxyurl = "https://cors-anywhere.herokuapp.com/";
+    const url = `https://api.stocktwits.com/api/2/search/symbols.json?access_token=${token}&q=${this.state.name}`
+
+    fetch(proxyurl + url)
       .then(response => response.json())
       .then(data => this.setState({
         info: data.results[0]
