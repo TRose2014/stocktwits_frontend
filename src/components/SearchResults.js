@@ -8,6 +8,7 @@ export default class SearchResults extends React.Component {
     this.searchStocks = this.searchStocks.bind(this);
     this.displayStocks = this.displayStocks.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.getTweets = this.getTweets.bind(this);
     this.state = {
       info: {},
       results: this.props.token.split('#'),
@@ -30,6 +31,20 @@ export default class SearchResults extends React.Component {
       .then(data => this.setState({
         info: data.results[0]
       }))
+      .catch(err => {
+        console.log(err);
+      });
+  }
+
+  getTweets(event) {
+    event.preventDefault();
+
+    const proxyurl = "https://cors-anywhere.herokuapp.com/";
+    const url = `https://api.stocktwits.com/api/2/streams/symbol/${this.state.name}.json`
+
+    fetch(proxyurl + url)
+      .then(response => response.json())
+      .then(data => console.log('data', data))
       .catch(err => {
         console.log(err);
       });
@@ -64,7 +79,7 @@ export default class SearchResults extends React.Component {
         {this.state.results.length > 1 ?
             <>
               <form>
-                <input type="text" placeholder="Search Stocks"
+                <input type="text" placeholder="Search Stock Info"
                 onChange={this.handleChange} />
                 <button onClick={this.searchStocks}>Search</button>
               </form>
@@ -79,7 +94,11 @@ export default class SearchResults extends React.Component {
 
               </>
             :
-            <h1>no movies</h1>            
+            <form>
+            <input type="text" placeholder="Search Stock Info"
+            onChange={this.handleChange} />
+            <button onClick={this.getTweets}>Search</button>
+          </form>         
         }
 
 
