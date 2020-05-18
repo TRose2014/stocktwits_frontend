@@ -2,8 +2,8 @@ import React from 'react';
 import Greeting from './components/Greeting';
 import LogInOut from './components/LogInOut';
 import SearchResults from './components/SearchResults';
-import queryString from 'query-string';
 import './index.css';
+import { AppBar, Toolbar } from '@material-ui/core';
 
 class App extends React.Component {
   constructor(props) {
@@ -40,11 +40,13 @@ class App extends React.Component {
   render() {
     return (
       <div id="App">
-        <header>
+        <AppBar>
+          <Toolbar>
           <h1>StockWits</h1>
-          <Greeting body={this.state.body} />
+          <Greeting token={this.state.token} />
           <LogInOut body={this.state.body} uri={this.state.heroku_url} />
-        </header>
+          </Toolbar>
+        </AppBar>
           <SearchResults token={this.state.token} />
       </div>
     );

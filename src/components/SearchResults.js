@@ -1,6 +1,7 @@
 import React from 'react';
 import NoToken from './noToken';
 import YesToken from './yesToken';
+import { Button, TextField, Card, CardContent } from '@material-ui/core';
 
 export default class SearchResults extends React.Component {
   constructor(props) {
@@ -16,6 +17,13 @@ export default class SearchResults extends React.Component {
       tweets: [],
 
     }
+  }
+
+  componentDidUpdate() {
+    // this.getTweets();
+    setInterval(console.log('Hello from set interval'), 5000);
+    // setInterval(this.getTweets, 5000);
+
   }
 
   searchStocks(event) {
@@ -51,9 +59,6 @@ export default class SearchResults extends React.Component {
       .catch(err => {
         console.log(err);
       });
-
-    setInterval(console.log('Hello from set interval'), 5000);
-    // setInterval(this.state.getTweets, 5000);
   }
 
   displayStocks() {
@@ -84,10 +89,9 @@ export default class SearchResults extends React.Component {
         <div>
         {this.state.results.length > 1 ?
             <>
-              <form>
-                <input type="text" placeholder="Search Stock Info"
-                onChange={this.handleChange} />
-                <button onClick={this.searchStocks}>Search</button>
+              <form style={{ marginTop : '20%' }}>
+              <TextField id="outlined-basic" label="Search Stock Info" variant="outlined" onChange={this.handleChange} />
+              <Button onClick={this.searchStocks}>Search Stocks</Button>
               </form>
                 <YesToken
                   key={this.state.info.id}
@@ -101,19 +105,20 @@ export default class SearchResults extends React.Component {
               </>
             :
             <>
-              <form>
-                <input type="text" placeholder="Search Stock Tweets"
-                onChange={this.handleChange} />
-                <button onClick={this.getTweets}>Search</button>
+              <form style={{ marginTop : '20%' }}>
+              <TextField id="outlined-basic" label="Search Stock Tweets" variant="outlined" onChange={this.handleChange} />
+              <Button onClick={this.getTweets}>Get Tweets</Button>
               </form>
             <div> 
             {this.state.tweets.map((item, index) => {
                 return ( 
-                <div id={index}>
-                  <h4>{item.user.username}</h4>
-                  <img src={item.user.avatar_url} alt={item.user.username} photo />
-                  <p>{item.body}</p>
-                </div>
+                  <Card key={index}>
+                    <CardContent>
+                      <h4>{item.user.username}</h4>
+                      <img src={item.user.avatar_url} alt={item.user.username} photo />
+                      <p>{item.body}</p>
+                    </CardContent>
+                  </Card>
                     )
               })}
             </div>

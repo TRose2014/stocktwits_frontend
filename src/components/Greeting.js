@@ -6,10 +6,15 @@ export default class Greeting extends React.Component {
   }
 
   render() {
-    let message = (this.props.body.user) ? `Hi, ${this.props.body.user.email}!` : 'Please log in';
+    let auth = this.props.token.split('#');
+    console.log('auth', auth);
 
     return (
-      <span>{message}</span>
+      <div>
+        {auth.length < 1 ? 
+        <span>Please log in</span> : 
+        <span>Welcome!</span>}
+      </div>
     )
   }
 }
