@@ -24,7 +24,7 @@ main,
 }
 
 .mainHeader {
-	align-items: stretch;
+	justify-content: space-between;
 }
 
 .search {
@@ -35,7 +35,7 @@ main,
 
 .tweetCard {
 	width: 80%;
-	background-color: cornsilk !important; margin-left: 10%;
+	background-color: oldlace !important; margin-left: 10%;
 	text-align: center;
 }
 

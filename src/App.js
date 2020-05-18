@@ -3,7 +3,7 @@ import Greeting from './components/Greeting';
 import LogInOut from './components/LogInOut';
 import SearchResults from './components/SearchResults';
 import './index.css';
-import { AppBar, Toolbar } from '@material-ui/core';
+import { AppBar, Toolbar, Typography, Link } from '@material-ui/core';
 
 class App extends React.Component {
   constructor(props) {
@@ -40,9 +40,14 @@ class App extends React.Component {
   render() {
     return (
       <div id="App">
-        <AppBar className='mainHeader'>
-          <Toolbar>
-          <h1>StockTwits</h1>
+        <AppBar>
+          <Toolbar className='mainHeader'>
+            <Typography>
+              <Link href='/'>
+                StockTwits
+                {/* <h1>StockTwits</h1> */}
+              </Link>
+            </Typography>
           <Greeting token={this.state.token} />
           <LogInOut body={this.state.body} uri={this.state.heroku_url} />
           </Toolbar>

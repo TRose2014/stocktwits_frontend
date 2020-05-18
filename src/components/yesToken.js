@@ -7,10 +7,15 @@ export default class YesToken extends React.Component {
     super(props);
       this.addStock = this.addStock.bind(this);
       this.removeStock = this.removeStock.bind(this);
+      this.state = {
+        savedStocks: [],
+      }
   }
 
   addStock() {
     console.log('Added stock');
+    this.props.title.push(this.state.savedStocks);
+    console.log(this.state.SavedStocks);
   }
 
   removeStock() {
