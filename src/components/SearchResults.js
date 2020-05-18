@@ -1,6 +1,7 @@
 import React from 'react';
 import NoToken from './noToken';
 import YesToken from './yesToken';
+import '../index.css';
 import { Button, TextField, Card, CardContent } from '@material-ui/core';
 
 export default class SearchResults extends React.Component {
@@ -89,7 +90,7 @@ export default class SearchResults extends React.Component {
         <div>
         {this.state.results.length > 1 ?
             <>
-              <form style={{ marginTop : '20%' }}>
+              <form className='search'>
               <TextField id="outlined-basic" label="Search Stock Info" variant="outlined" onChange={this.handleChange} />
               <Button onClick={this.searchStocks}>Search Stocks</Button>
               </form>
@@ -105,20 +106,24 @@ export default class SearchResults extends React.Component {
               </>
             :
             <>
-              <form style={{ marginTop : '20%' }}>
+              <form className='search'>
               <TextField id="outlined-basic" label="Search Stock Tweets" variant="outlined" onChange={this.handleChange} />
-              <Button onClick={this.getTweets}>Get Tweets</Button>
+              <Button className='tweetButton' onClick={this.getTweets}>Get Tweets</Button>
               </form>
             <div> 
             {this.state.tweets.map((item, index) => {
                 return ( 
-                  <Card key={index}>
+                  <>
+                  <br />
+                  <Card key={index} className='tweetCard'>
                     <CardContent>
-                      <h4>{item.user.username}</h4>
+                      <h4 className='tweetResults'>{item.user.username}</h4>
                       <img src={item.user.avatar_url} alt={item.user.username} photo />
                       <p>{item.body}</p>
                     </CardContent>
                   </Card>
+                  <br />
+                  </>
                     )
               })}
             </div>

@@ -40,9 +40,9 @@ class App extends React.Component {
   render() {
     return (
       <div id="App">
-        <AppBar>
+        <AppBar className='mainHeader'>
           <Toolbar>
-          <h1>StockWits</h1>
+          <h1>StockTwits</h1>
           <Greeting token={this.state.token} />
           <LogInOut body={this.state.body} uri={this.state.heroku_url} />
           </Toolbar>
