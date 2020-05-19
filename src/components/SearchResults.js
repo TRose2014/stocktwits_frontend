@@ -20,20 +20,14 @@ export default class SearchResults extends React.Component {
     }
   }
 
-  componentDidUpdate() {
-    // this.getTweets();
-    setInterval(console.log('Hello from set interval'), 5000);
-    // setInterval(this.getTweets, 5000);
-
-  }
-
   searchStocks(event) {
     event.preventDefault();
     console.log('name', this.state.name);
     const token = this.state.results[1];
     console.log('token', token);
 
-    const proxyurl = "https://cors-anywhere.herokuapp.com/";
+    // const proxyurl = "https://cors-anywhere.herokuapp.com/";
+    const proxyurl = "https://tia-cors-anywhere.herokuapp.com/";
     const url = `https://api.stocktwits.com/api/2/search/symbols.json?access_token=${token}&q=${this.state.name}`
 
     fetch(proxyurl + url)
@@ -49,7 +43,8 @@ export default class SearchResults extends React.Component {
   getTweets(event) {
     event.preventDefault();
 
-    const proxyurl = "https://cors-anywhere.herokuapp.com/";
+    // const proxyurl = "https://cors-anywhere.herokuapp.com/";
+    const proxyurl = "https://tia-cors-anywhere.herokuapp.com/";
     const url = `https://api.stocktwits.com/api/2/streams/symbol/${this.state.name}.json`
 
     fetch(proxyurl + url)
@@ -95,7 +90,6 @@ export default class SearchResults extends React.Component {
               <Button onClick={this.searchStocks}>Search Stocks</Button>
               </form>
                 <YesToken
-                  key={this.state.info.id}
                   id={this.state.info.id}
                   title={this.state.info.title}
                   type={this.state.info.type}
