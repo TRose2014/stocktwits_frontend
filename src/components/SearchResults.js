@@ -26,7 +26,6 @@ export default class SearchResults extends React.Component {
     const token = this.state.results[1];
     console.log('token', token);
 
-    // const proxyurl = "https://cors-anywhere.herokuapp.com/";
     const proxyurl = "https://tia-cors-anywhere.herokuapp.com/";
     const url = `https://api.stocktwits.com/api/2/search/symbols.json?access_token=${token}&q=${this.state.name}`
 
@@ -40,21 +39,32 @@ export default class SearchResults extends React.Component {
       });
   }
 
-  getTweets(event) {
-    event.preventDefault();
+  timeout() {
+    setTimeout(this.getTweets, 5000);
+}
 
-    // const proxyurl = "https://cors-anywhere.herokuapp.com/";
+  componentDidMount() {
+    this.timeout();
+}
+
+  getTweets() {
+
     const proxyurl = "https://tia-cors-anywhere.herokuapp.com/";
     const url = `https://api.stocktwits.com/api/2/streams/symbol/${this.state.name}.json`
 
-    fetch(proxyurl + url)
+    if(this.state.name === ''){
+      console.log('No stocks searched')
+    }else{
+      fetch(proxyurl + url)
       .then(response => response.json())
       .then(data => this.setState({
         tweets: data.messages
       }))
+      .then(this.timeout())
       .catch(err => {
         console.log(err);
-      });
+        });
+    }
   }
 
   displayStocks() {
@@ -80,6 +90,7 @@ export default class SearchResults extends React.Component {
   render(){
     console.log('results2', this.state.results)
     console.log('info', this.state.info)
+    console.log('tweets', this.state.tweets)
     return(
       <div>
         <div>

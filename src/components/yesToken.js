@@ -2,6 +2,7 @@ import React from 'react';
 import '../index.css';
 import { Card, CardContent, Button } from '@material-ui/core';
 import SavedStocks from './SavedStocks';
+import { v4 as uuidv4 } from 'uuid';
 
 export default class YesToken extends React.Component {
   constructor(props) {
@@ -26,7 +27,6 @@ export default class YesToken extends React.Component {
 }
 
   getTweets() {
-    // const proxyurl = "https://cors-anywhere.herokuapp.com/";
     const proxyurl = "https://tia-cors-anywhere.herokuapp.com/";
     const url = `https://api.stocktwits.com/api/2/streams/symbol/${this.state.saved[0]}.json`
 
@@ -80,12 +80,13 @@ export default class YesToken extends React.Component {
             :
             <>
             <div>
-              <SavedStocks saved={this.state.saved} /> 
+              <SavedStocks saved={this.state.saved} />
+              <h3>Displaying {this.state.tweets.length}</h3> 
             {this.state.tweets.map((item, index) => {
                 return ( 
                   <>
                   <br />
-                  <Card key={index} className='tweetCard'>
+                  <Card key={uuidv4()} className='tweetCard'>
                     <CardContent>
                       <h4 className='tweetResults'>{item.user.username}</h4>
                       <img src={item.user.avatar_url} alt={item.user.username} photo />

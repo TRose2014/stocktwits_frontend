@@ -1,40 +1,22 @@
 import React from 'react';
+import { Typography, Link } from '@material-ui/core';
 
 export default class LogInOut extends React.Component {
 
   render() {
-    let message = (this.props.body.user)
-      ? 'sign out'
-      : 'sign in';
+    const auth = this.props.token.split('#');
 
-    let path = (this.props.body.user)
-      ? '/logout'
-      : '/login';
-
-    return (
-      <a href={this.props.uri + path}>{message}</a>
-    );
+    return(
+      <div>
+        {auth.length > 1 ?
+        <Typography>
+          <Link href='/'>
+            Sign Out
+          </Link>
+        </Typography> :
+        <a href={this.props.uri + '/login'}>{'Sign in'}</a>
+      }
+      </div>
+    )
   }
 }
-
-// import React from 'react';
-
-// export default class LogInOut extends React.Component {
-//   constructor(props) {
-//     super(props);
-//   }
-
-//   render() {
-//     let message = (this.props.body.token)
-//       ? 'sign out'
-//       : 'sign in';
-
-//     let path = (this.props.body.token)
-//       ? '/logout'
-//       : '/login';
-
-//     return (
-//       <a href={this.props.uri + path}>{message}</a>
-//     );
-//   }
-// }
