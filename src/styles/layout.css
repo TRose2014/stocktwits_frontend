@@ -34,17 +34,22 @@ main,
   text-align: center;
 }
 
+.searchCard {
+	width: 300px;
+	margin: 50px 0;
+}
+
 .searchForm {
 	margin-top: 120px;
 	margin-left: 20px;
 	display: flex;
-	justify-content: space-evenly;
+	justify-content: center;
 
 }
 
 .tweetCard {
 	width: 80%;
-	background-color: oldlace !important; margin-left: 10%;
+	margin-left: 10%;
 	text-align: center;
 }
 
@@ -54,7 +59,8 @@ main,
 }
 
 .tweetButton {
-	padding: 20px !important;
+	padding: 0 20px !important;
+  margin-left: 30px !important;
 }
 
 

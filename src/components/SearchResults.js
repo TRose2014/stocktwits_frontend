@@ -1,5 +1,4 @@
 import React from 'react';
-import NoToken from './noToken';
 import YesToken from './yesToken';
 import '../index.css';
 import { Button, TextField, Card, CardContent } from '@material-ui/core';
@@ -8,7 +7,6 @@ export default class SearchResults extends React.Component {
   constructor(props) {
     super(props);
     this.searchStocks = this.searchStocks.bind(this);
-    this.displayStocks = this.displayStocks.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.getTweets = this.getTweets.bind(this);
     this.state = {
@@ -20,10 +18,14 @@ export default class SearchResults extends React.Component {
     }
   }
 
+  /**
+   * @param {object} event 
+   * @description uses access token from App.js to search for specifc stocks using stocktwits api
+   */
+
   searchStocks(event) {
     event.preventDefault();
     const token = this.state.results[1];
-
     const proxyurl = "https://tia-cors-anywhere.herokuapp.com/";
     const url = `https://api.stocktwits.com/api/2/search/symbols.json?access_token=${token}&q=${this.state.name}`
 
@@ -37,13 +39,21 @@ export default class SearchResults extends React.Component {
       });
   }
 
+  /**
+   * @description calls getTweets() every 5 seconds to get new tweets without refreshing
+   */
+  
   timeout() {
     setTimeout(this.getTweets, 5000);
-}
+  }
 
   componentDidMount() {
     this.timeout();
-}
+  }
+
+  /**
+   * @description Uses name passed in by user in the input field to search stocktwits api symbol streams
+   */
 
   getTweets() {
 
@@ -65,17 +75,10 @@ export default class SearchResults extends React.Component {
     }
   }
 
-  displayStocks() {
-    if(this.state.results.length === 2){
-      return(
-        <YesToken />
-      )
-    }else{
-      return(
-        <NoToken />
-      )
-    }
-  }
+  /**
+   * @param {object} event 
+   * @description gets and saves info passed in by user via input field
+   */
 
   handleChange (event) {
     event.preventDefault();
@@ -85,12 +88,12 @@ export default class SearchResults extends React.Component {
   render(){
     return(
       <div>
-        <div>
-        {this.state.results.length > 1 ?
-            <div >
+        <div style={{ textAlign: 'center' }}>
+        {this.state.results.length > 1 ?  // If user has access token display this
+            <div className="searchContainer">
               <form className='searchForm'>
               <TextField id="outlined-basic" label="Search Stock Info" variant="outlined" onChange={this.handleChange} />
-              <Button onClick={this.searchStocks}>Search Stocks</Button>
+              <Button className='tweetButton' onClick={this.searchStocks}>Search Stocks</Button>
               </form>
                 <YesToken
                   id={this.state.info.id}

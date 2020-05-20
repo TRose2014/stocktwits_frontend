@@ -38,3 +38,11 @@ footer a:active {
 footer {
 	background-color: #3f51b5;
 }
+
+.tweetCard {
+	background-color: oldlace !important;
+}
+
+.tweetButton {
+	background-color: lightgrey !important;
+}

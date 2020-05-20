@@ -1,10 +1,15 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Stocktwits App
 
-## Available Scripts
+### Author: Tia Rose
 
-In the project directory, you can run:
+### Links and Resources
+* [back-end-heroku]() 
+* [back-end-github]()
+* [front-end-netlify]()
+* [front-end-github]()
 
-### `yarn start`
+#### Running the app
+In the project directory, you can run: `yarn start`
 
 Runs the app in the development mode.<br />
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
@@ -12,10 +17,41 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.<br />
 You will also see any lint errors in the console.
 
+
+#### App Endpoints/Navigation
+* App.js
+  * ComponentDidMount()
+    - GET 'https://stockwits-backend.herokuapp.com/user'
+      * Uses access token to search stocktwits api for a stock symbol
+  * SearchResults Component
+    - searchStocks()
+    - GET 'https://api.stocktwits.com/api/2/search.json?access_token=<access_token>q=AAPL'
+      * uses access token to search stocktwits api for a specific stock symbol
+* Endpoint: `/foo/bar/`
+  * Returns a JSON object with abc in it.
+* Endpoint: `/bing/zing/`
+  * Returns a JSON object with xyz in it.
+  
+#### Tests
+In the project directory, you can run:
+
 ### `yarn test`
 
 Launches the test runner in the interactive watch mode.<br />
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+
+#### UML
+Link to an image of the UML for your application and response to events
+
+#### Goals
+- Reuse functions (SearchResults component and yesToken component)
+- Determine how to search tweets of more than one stock
+- Write tests
+
+## More information about React
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+## Available Scripts
 
 ### `yarn build`
 
