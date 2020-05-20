@@ -32,6 +32,9 @@ export default class YesToken extends React.Component {
 
     if(!this.state.saved || !this.state.saved.length){
       console.log('No stocks searched')
+      this.setState({
+        tweets: []
+      })
     }else{
       fetch(proxyurl + url)
         .then(response => response.json())
@@ -54,13 +57,10 @@ export default class YesToken extends React.Component {
   }
 
   removeStock() {
-    console.log('Removed stock');
     this.state.saved.pop();
-    console.log(this.state.saved.length);
     this.getTweets();
   }
   render() {
-    console.log('tweets', this.state.tweets);
     return (
       <>
       <Card>
@@ -81,7 +81,7 @@ export default class YesToken extends React.Component {
             <>
             <div>
               <SavedStocks saved={this.state.saved} />
-              <h3>Displaying {this.state.tweets.length}</h3> 
+              <h3 className="tweetLength">Displaying {this.state.tweets.length} Tweets</h3> 
             {this.state.tweets.map((item, index) => {
                 return ( 
                   <>
@@ -91,9 +91,6 @@ export default class YesToken extends React.Component {
                       <h4 className='tweetResults'>{item.user.username}</h4>
                       <img src={item.user.avatar_url} alt={item.user.username} photo />
                       <p>{item.body}</p>
-                      {/* if({item.entities.chart.url}){
-                        <img src={item.entities.chart.url} alt="" />
-                      } */}
                     </CardContent>
                   </Card>
                   <br />

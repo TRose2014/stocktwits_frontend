@@ -22,9 +22,7 @@ export default class SearchResults extends React.Component {
 
   searchStocks(event) {
     event.preventDefault();
-    console.log('name', this.state.name);
     const token = this.state.results[1];
-    console.log('token', token);
 
     const proxyurl = "https://tia-cors-anywhere.herokuapp.com/";
     const url = `https://api.stocktwits.com/api/2/search/symbols.json?access_token=${token}&q=${this.state.name}`
@@ -69,12 +67,10 @@ export default class SearchResults extends React.Component {
 
   displayStocks() {
     if(this.state.results.length === 2){
-      console.log('yes token');
       return(
         <YesToken />
       )
     }else{
-      console.log('no token')
       return(
         <NoToken />
       )
@@ -84,19 +80,15 @@ export default class SearchResults extends React.Component {
   handleChange (event) {
     event.preventDefault();
     this.setState({ name: event.target.value })
-    console.log(event.target.value)
   }
 
   render(){
-    console.log('results2', this.state.results)
-    console.log('info', this.state.info)
-    console.log('tweets', this.state.tweets)
     return(
       <div>
         <div>
         {this.state.results.length > 1 ?
-            <>
-              <form className='search'>
+            <div >
+              <form className='searchForm'>
               <TextField id="outlined-basic" label="Search Stock Info" variant="outlined" onChange={this.handleChange} />
               <Button onClick={this.searchStocks}>Search Stocks</Button>
               </form>
@@ -107,15 +99,15 @@ export default class SearchResults extends React.Component {
                   symbol={this.state.info.symbol}
                   exchange={this.state.info.exchange}
                 />
-
-              </>
+              </div>
             :
-            <>
-              <form className='search'>
+            <div>
+              <form className='searchForm'>
               <TextField id="outlined-basic" label="Search Stock Tweets" variant="outlined" onChange={this.handleChange} />
               <Button className='tweetButton' onClick={this.getTweets}>Get Tweets</Button>
               </form>
-            <div> 
+            <div>
+            <h3 className="tweetLength">Displaying {this.state.tweets.length} Tweets</h3>  
             {this.state.tweets.map((item, index) => {
                 return ( 
                   <>
@@ -132,7 +124,7 @@ export default class SearchResults extends React.Component {
                     )
               })}
             </div>
-          </>         
+          </div>         
         }
         </div>
       </div>
