@@ -6,8 +6,8 @@ export default class SavedStocks extends React.Component {
     super(props);
     this.removeItem = this.removeItem.bind(this);
     this.state = {
-      savedStock: this.props.saved
-    }
+      savedStock: this.props.saved,
+    };
   }
 
   /**
@@ -17,16 +17,14 @@ export default class SavedStocks extends React.Component {
 
 
   removeItem(index) {
-    const stocks = this.state.savedStock.filter((stock, stockIndex) => {
-      return stockIndex !== index
-    })
-    this.setState({ savedStock: stocks })
+    const stocks = this.state.savedStock.filter((stock, stockIndex) => stockIndex !== index);
+    this.setState({ savedStock: stocks });
   }
 
   componentDidMount() {
     this.setState({
-      savedStock: this.props.saved
-    })
+      savedStock: this.props.saved,
+    });
   }
 
 
@@ -35,18 +33,16 @@ export default class SavedStocks extends React.Component {
       <Card className='searchContainer'>
         <CardContent>
           <h1>Saved Stocks</h1>
-          {this.state.savedStock.map((item, index) => {
-            return(
-              <Card className='searchCard' key={index}>
-                <CardContent>
-                  <h1>{item}</h1>
-                  <Button onClick={(e) => { this.removeItem(index)}} key={item}>Remove Stock</Button>
-                </CardContent>
-              </Card>
-            )
-          })}
+          {this.state.savedStock.map((item, index) => (
+            <Card className='searchCard' key={index}>
+              <CardContent>
+                <h1>{item}</h1>
+                <Button onClick={(e) => { this.removeItem(index); }} key={item}>Remove Stock</Button>
+              </CardContent>
+            </Card>
+          ))}
         </CardContent>
       </Card>
-    )
+    );
   }
 }

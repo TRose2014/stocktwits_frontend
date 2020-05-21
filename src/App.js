@@ -1,9 +1,9 @@
 import React from 'react';
+import { AppBar, Toolbar } from '@material-ui/core';
 import Greeting from './components/Greeting';
 import LogInOut from './components/LogInOut';
 import SearchResults from './components/SearchResults';
 import './index.css';
-import { AppBar, Toolbar } from '@material-ui/core';
 
 class App extends React.Component {
   constructor(props) {
@@ -17,16 +17,18 @@ class App extends React.Component {
 
   render() {
     return (
-      <div id="App">
+      <div id='App'>
         <AppBar>
           <Toolbar className='mainHeader'>
-          <Greeting token={this.state.token} />
-          <LogInOut body={this.state.body} uri={this.state.heroku_url}
-          token={this.state.token}
-           />
+            <Greeting token={this.state.token} />
+            <LogInOut
+              body={this.state.body}
+              uri={this.state.heroku_url}
+              token={this.state.token}
+            />
           </Toolbar>
         </AppBar>
-          <SearchResults token={this.state.token} />
+        <SearchResults token={this.state.token} />
       </div>
     );
   }

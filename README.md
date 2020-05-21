@@ -37,6 +37,7 @@ See the section about [running tests](https://facebook.github.io/create-react-ap
 #### Goals
 - Reuse functions (SearchResults component and yesToken component)
 - Determine how to search tweets of more than one stock
+- Add more error handling for when user input is incorrect
 - Write tests
 
 ## More information about React

@@ -1,7 +1,9 @@
+/* eslint-disable max-len */
 import React from 'react';
+import { Button, TextField, Card, CardContent } from '@material-ui/core';
+
 import YesToken from './yesToken';
 import '../index.css';
-import { Button, TextField, Card, CardContent } from '@material-ui/core';
 
 export default class SearchResults extends React.Component {
   constructor(props) {
@@ -15,7 +17,7 @@ export default class SearchResults extends React.Component {
       name: '',
       tweets: [],
 
-    }
+    };
   }
 
   /**
@@ -27,15 +29,15 @@ export default class SearchResults extends React.Component {
   searchStocks(event) {
     event.preventDefault();
     const token = this.state.results[1];
-    const proxyurl = "https://tia-cors-anywhere.herokuapp.com/";
-    const url = `https://api.stocktwits.com/api/2/search/symbols.json?access_token=${token}&q=${this.state.name}`
+    const proxyurl = 'https://tia-cors-anywhere.herokuapp.com/';
+    const url = `https://api.stocktwits.com/api/2/search/symbols.json?access_token=${token}&q=${this.state.name}`;
 
     fetch(proxyurl + url)
-      .then(response => response.json())
-      .then(data => this.setState({
-        info: data.results[0]
+      .then((response) => response.json())
+      .then((data) => this.setState({
+        info: data.results[0],
       }))
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
       });
   }
@@ -44,7 +46,6 @@ export default class SearchResults extends React.Component {
    * @function timeout
    * @description calls getTweets() every 5 seconds to get new tweets without refreshing
    */
-  
   timeout() {
     setTimeout(this.getTweets, 5000);
   }
@@ -59,21 +60,20 @@ export default class SearchResults extends React.Component {
    */
 
   getTweets() {
+    const proxyurl = 'https://tia-cors-anywhere.herokuapp.com/';
+    const url = `https://api.stocktwits.com/api/2/streams/symbol/${this.state.name}.json`;
 
-    const proxyurl = "https://tia-cors-anywhere.herokuapp.com/";
-    const url = `https://api.stocktwits.com/api/2/streams/symbol/${this.state.name}.json`
-
-    if(this.state.name === ''){
-      console.log('No stocks searched')
-    }else{
+    if (this.state.name === '') {
+      console.log('No stocks searched');
+    } else {
       fetch(proxyurl + url)
-      .then(response => response.json())
-      .then(data => this.setState({
-        tweets: data.messages
-      }))
-      .then(this.timeout())
-      .catch(err => {
-        console.log(err);
+        .then((response) => response.json())
+        .then((data) => this.setState({
+          tweets: data.messages,
+        }))
+        .then(this.timeout())
+        .catch((err) => {
+          console.log(err);
         });
     }
   }
@@ -84,17 +84,17 @@ export default class SearchResults extends React.Component {
    * @description gets and saves info passed in by user via input field
    */
 
-  handleChange (event) {
+  handleChange(event) {
     event.preventDefault();
-    this.setState({ name: event.target.value })
+    this.setState({ name: event.target.value });
   }
 
-  render(){
-    return(
+  render() {
+    return (
       <div>
         <div style={{ textAlign: 'center' }}>
-        {this.state.results.length > 1 ?  // If user has access token display this
-            <div className="searchContainer">
+        {this.state.results.length > 1 // If user has access token display this
+          ? <div>
               <form className='searchForm'>
               <TextField id="outlined-basic" label="Search Stock Info" variant="outlined" onChange={this.handleChange} />
               <Button className='tweetButton' onClick={this.searchStocks}>Search Stocks</Button>
@@ -107,16 +107,17 @@ export default class SearchResults extends React.Component {
                   exchange={this.state.info.exchange}
                 />
               </div>
-            :
-            <div>
+          : 
+          <div>
               <form className='searchForm'>
               <TextField id="outlined-basic" label="Search Stock Tweets" variant="outlined" onChange={this.handleChange} />
               <Button className='tweetButton' onClick={this.getTweets}>Get Tweets</Button>
               </form>
             <div>
-            <h3 className="tweetLength">Displaying {this.state.tweets.length} Tweets</h3>  
+            <h2>Sign in to save your favorite stocks!</h2>
+            <h3>Displaying {this.state.tweets.length} Tweets</h3>  
             {this.state.tweets.map((item, index) => {
-                return ( 
+              return ( 
                   <>
                   <br />
                   <Card key={index} className='tweetCard'>
@@ -128,13 +129,13 @@ export default class SearchResults extends React.Component {
                   </Card>
                   <br />
                   </>
-                    )
-              })}
+              );
+            })}
             </div>
           </div>         
         }
         </div>
       </div>
-    )
+    );
   }
 }

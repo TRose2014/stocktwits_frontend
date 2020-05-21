@@ -36,7 +36,7 @@ export default class YesToken extends React.Component {
    */
 
   getTweets() {
-    const proxyurl = "https://tia-cors-anywhere.herokuapp.com/";
+    const proxyurl = 'https://tia-cors-anywhere.herokuapp.com/';
     const url = `https://api.stocktwits.com/api/2/streams/symbol/${this.state.saved[0]}.json`
 
     if(!this.state.saved || !this.state.saved.length){
@@ -71,14 +71,14 @@ export default class YesToken extends React.Component {
   render() {
     return (
       <>
-      <div className="searchContainer">
+      <div>
       {this.state.tweets === undefined ?
             <div>
               <h3>Please search using a vaild stock symbol</h3>
             </div>
             :
             <>
-              <Card className="searchCard">
+              <Card className='searchCard'>
                 <CardContent>
                 <h1>{this.props.title}</h1>
                 <h1>{this.props.symbol}</h1>
@@ -88,7 +88,7 @@ export default class YesToken extends React.Component {
               </Card>
             <div>
               <SavedStocks saved={this.state.saved} symbol={this.props.symbol} />
-              <h3 className="tweetLength">Displaying {this.state.tweets.length} Tweets</h3> 
+              <h3>Displaying {this.state.tweets.length} Tweets</h3> 
             {this.state.tweets.map((item, index) => {
                 return ( 
                   <>
