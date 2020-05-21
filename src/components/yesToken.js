@@ -8,7 +8,6 @@ export default class YesToken extends React.Component {
   constructor(props) {
     super(props);
       this.addStock = this.addStock.bind(this);
-      this.removeStock = this.removeStock.bind(this);
       this.getTweets = this.getTweets.bind(this);
       this.timeout= this.timeout.bind(this);
       this.state = {
@@ -19,6 +18,8 @@ export default class YesToken extends React.Component {
   }
 
   /**
+   * @function timeout
+   * @function timeout
    * @description calls getTweets() every 5 seconds to get new tweets without refreshing
    */
 
@@ -31,6 +32,7 @@ export default class YesToken extends React.Component {
   }
 
   /**
+   * @function getTweets
    * @description Uses name passed in by user in the input field to search stocktwits api symbol streams
    */
 
@@ -57,21 +59,13 @@ export default class YesToken extends React.Component {
   }
 
   /**
+   * @function addStock
    * @description save symbol and pushes into the saved array
    */
 
   addStock() {
     const symbol = this.props.symbol;
     this.state.saved.push(symbol);
-    this.getTweets();
-  }
-
-  /**
-   * @description removes symbol from the saved array
-   */
-
-  removeStock() {
-    this.state.saved.pop();
     this.getTweets();
   }
 

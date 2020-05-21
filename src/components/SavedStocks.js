@@ -10,6 +10,12 @@ export default class SavedStocks extends React.Component {
     }
   }
 
+  /**
+   * @function removeItem
+   * @description removes symbol from the saved array
+   */
+
+
   removeItem(index) {
     const stocks = this.state.savedStock.filter((stock, stockIndex) => {
       return stockIndex !== index

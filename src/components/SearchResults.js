@@ -19,6 +19,7 @@ export default class SearchResults extends React.Component {
   }
 
   /**
+   * @function searchStocks
    * @param {object} event 
    * @description uses access token from App.js to search for specifc stocks using stocktwits api
    */
@@ -40,6 +41,7 @@ export default class SearchResults extends React.Component {
   }
 
   /**
+   * @function timeout
    * @description calls getTweets() every 5 seconds to get new tweets without refreshing
    */
   
@@ -52,6 +54,7 @@ export default class SearchResults extends React.Component {
   }
 
   /**
+   * @function getTweets
    * @description Uses name passed in by user in the input field to search stocktwits api symbol streams
    */
 
@@ -76,6 +79,7 @@ export default class SearchResults extends React.Component {
   }
 
   /**
+   * @function handleChange
    * @param {object} event 
    * @description gets and saves info passed in by user via input field
    */
