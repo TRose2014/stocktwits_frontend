@@ -1,0 +1,48 @@
+/* color variables */
+html {
+	--color-dark: #123;
+	--color-light: #f6f3f0;
+	--color-accent: #38c;
+}
+
+/* light on dark */
+header,
+footer,
+#Response pre,
+footer a {
+	color: white;
+}
+
+/* dark on light */
+header a,
+main,
+#UserData textarea:read-only {
+	color: var(--color-dark);
+	background-color: var(--color-light);
+}
+
+/* light on accent */
+header a:hover,
+header a:active {
+	color: var(--color-light);
+	background-color: var(--color-accent);
+}
+
+/* accent on dark */
+footer a:hover,
+footer a:active {
+	color: var(--color-accent);
+	background-color: var(--color-dark);
+}
+
+footer {
+	background-color: #3f51b5;
+}
+
+.tweetCard {
+	background-color: oldlace !important;
+}
+
+.tweetButton {
+	background-color: lightgrey !important;
+}

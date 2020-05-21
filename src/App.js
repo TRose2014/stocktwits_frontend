@@ -1,26 +1,37 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { AppBar, Toolbar } from '@material-ui/core';
+import Greeting from './components/Greeting';
+import LogInOut from './components/LogInOut';
+import SearchResults from './components/SearchResults';
+import './index.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      body: {},
+      heroku_url: 'https://stockwits-backend.herokuapp.com',
+      token: window.location.href,
+    };
+  }
+
+  render() {
+    return (
+      <div id='App'>
+        <AppBar>
+          <Toolbar className='mainHeader'>
+            <Greeting token={this.state.token} />
+            <LogInOut
+              body={this.state.body}
+              uri={this.state.heroku_url}
+              token={this.state.token}
+            />
+          </Toolbar>
+        </AppBar>
+        <SearchResults token={this.state.token} />
+      </div>
+    );
+  }
 }
 
 export default App;
