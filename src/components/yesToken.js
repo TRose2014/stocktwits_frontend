@@ -1,13 +1,13 @@
 import React from 'react';
 import '../index.css';
 import { Card, CardContent, Button } from '@material-ui/core';
-import SavedStocks from './SavedStocks';
 import { v4 as uuidv4 } from 'uuid';
 
 export default class YesToken extends React.Component {
   constructor(props) {
     super(props);
       this.addStock = this.addStock.bind(this);
+      this.removeItem = this.removeItem.bind(this);
       this.getTweets = this.getTweets.bind(this);
       this.timeout= this.timeout.bind(this);
       this.state = {
@@ -68,6 +68,11 @@ export default class YesToken extends React.Component {
     this.getTweets();
   }
 
+  removeItem(index) {
+    const stocks = this.state.saved.filter((stock, stockIndex) => stockIndex !== index);
+    this.setState({ saved: stocks });
+  }
+
   render() {
     return (
       <>
@@ -87,7 +92,14 @@ export default class YesToken extends React.Component {
                 </CardContent>
               </Card>
             <div>
-              <SavedStocks saved={this.state.saved} symbol={this.props.symbol} />
+              {this.state.saved.map((item, index) => (
+            <Card className='searchCard' key={index}>
+              <CardContent>
+                <h1>{item}</h1>
+                <Button onClick={(e) => { this.removeItem(index); }} key={item}>Remove Stock</Button>
+              </CardContent>
+            </Card>
+          ))}
               <h3>Displaying {this.state.tweets.length} Tweets</h3> 
             {this.state.tweets.map((item, index) => {
                 return ( 
