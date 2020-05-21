@@ -19,7 +19,6 @@ export default class YesToken extends React.Component {
 
   /**
    * @function timeout
-   * @function timeout
    * @description calls getTweets() every 5 seconds to get new tweets without refreshing
    */
 
@@ -37,8 +36,7 @@ export default class YesToken extends React.Component {
    */
 
   getTweets() {
-    // const proxyurl = "https://tia-cors-anywhere.herokuapp.com/";
-    const proxyurl = "https://cors-anywhere.herokuapp.com/";
+    const proxyurl = "https://tia-cors-anywhere.herokuapp.com/";
     const url = `https://api.stocktwits.com/api/2/streams/symbol/${this.state.saved[0]}.json`
 
     if(!this.state.saved || !this.state.saved.length){

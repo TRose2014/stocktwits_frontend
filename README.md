@@ -3,12 +3,17 @@
 ### Author: Tia Rose
 
 ### Links and Resources
-* [Back-end Deployed](https://stockwits-backend.herokuapp.com/) 
-* [Back-end Github]()
+* [Back-end Deployed](https://stockwits-backend.herokuapp.com/logout) 
+* [Back-end Github](https://github.com/TRose2014/stocktwits_backend)
 * [Front-end Deployed](https://infallible-booth-e191ee.netlify.app)
 * [Front-end Github](https://github.com/TRose2014/stocktwits_frontend)
 
 #### Running the app
+
+Run `git clone https://github.com/TRose2014/stocktwits_frontend.git` in terminal
+
+`yarn install`
+
 In the project directory, you can run: `yarn start`
 
 Runs the app in the development mode.<br />
