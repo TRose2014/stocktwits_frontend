@@ -27,7 +27,8 @@ export default class SearchResults extends React.Component {
   searchStocks(event) {
     event.preventDefault();
     const token = this.state.results[1];
-    const proxyurl = "https://tia-cors-anywhere.herokuapp.com/";
+    // const proxyurl = "https://tia-cors-anywhere.herokuapp.com/";
+    const proxyurl = "https://cors-anywhere.herokuapp.com/";
     const url = `https://api.stocktwits.com/api/2/search/symbols.json?access_token=${token}&q=${this.state.name}`
 
     fetch(proxyurl + url)
@@ -60,7 +61,8 @@ export default class SearchResults extends React.Component {
 
   getTweets() {
 
-    const proxyurl = "https://tia-cors-anywhere.herokuapp.com/";
+    // const proxyurl = "https://tia-cors-anywhere.herokuapp.com/";
+    const proxyurl = "https://cors-anywhere.herokuapp.com/";
     const url = `https://api.stocktwits.com/api/2/streams/symbol/${this.state.name}.json`
 
     if(this.state.name === ''){

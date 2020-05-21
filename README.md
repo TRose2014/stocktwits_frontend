@@ -3,10 +3,10 @@
 ### Author: Tia Rose
 
 ### Links and Resources
-* [back-end-heroku]() 
-* [back-end-github]()
-* [front-end-netlify]()
-* [front-end-github]()
+* [Back-end Deployed](https://stockwits-backend.herokuapp.com/) 
+* [Back-end Github]()
+* [Front-end Deployed](https://infallible-booth-e191ee.netlify.app)
+* [Front-end Github](https://github.com/TRose2014/stocktwits_frontend)
 
 #### Running the app
 In the project directory, you can run: `yarn start`
@@ -18,19 +18,8 @@ The page will reload if you make edits.<br />
 You will also see any lint errors in the console.
 
 
-#### App Endpoints/Navigation
-* App.js
-  * ComponentDidMount()
-    - GET 'https://stockwits-backend.herokuapp.com/user'
-      * Uses access token to search stocktwits api for a stock symbol
-  * SearchResults Component
-    - searchStocks()
-    - GET 'https://api.stocktwits.com/api/2/search.json?access_token=<access_token>q=AAPL'
-      * uses access token to search stocktwits api for a specific stock symbol
-* Endpoint: `/foo/bar/`
-  * Returns a JSON object with abc in it.
-* Endpoint: `/bing/zing/`
-  * Returns a JSON object with xyz in it.
+#### API link
+[Stocktwits](https://api.stocktwits.com/developers/docs/api)
   
 #### Tests
 In the project directory, you can run:
@@ -39,9 +28,6 @@ In the project directory, you can run:
 
 Launches the test runner in the interactive watch mode.<br />
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-#### UML
-Link to an image of the UML for your application and response to events
 
 #### Goals
 - Reuse functions (SearchResults component and yesToken component)
@@ -102,7 +88,5 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `yarn build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
-# stocktwits_frontend
 
-
-Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
+Icons made by [Freepik](https://www.flaticon.com/authors/freepik) from [Flaticon](https://www.flaticon.com/)
