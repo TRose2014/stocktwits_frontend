@@ -36,6 +36,7 @@ export default class YesToken extends React.Component {
    */
 
   getTweets() {
+    const proxy = 'https://tia-cors-anywhere.herokuapp.com/'
     const url = `https://api.stocktwits.com/api/2/streams/symbol/${this.state.saved[0]}.json`
 
     if(!this.state.saved || !this.state.saved.length){
@@ -44,7 +45,7 @@ export default class YesToken extends React.Component {
         tweets: []
       })
     }else{
-      fetch(url)
+      fetch(proxy + url)
         .then(response => response.json())
         .then(data => this.setState({
           tweets: data.messages
