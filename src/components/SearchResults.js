@@ -29,9 +29,10 @@ export default class SearchResults extends React.Component {
   searchStocks(event) {
     event.preventDefault();
     const token = this.state.results[1];
+    const proxy = 'https://tia-cors-anywhere.herokuapp.com/'
     const url = `https://api.stocktwits.com/api/2/search/symbols.json?access_token=${token}&q=${this.state.name}`;
 
-    fetch(url)
+    fetch(proxy + url)
       .then((response) => response.json())
       .then((data) => this.setState({
         info: data.results[0],
@@ -59,12 +60,13 @@ export default class SearchResults extends React.Component {
    */
 
   getTweets() {
+    const proxy = 'https://tia-cors-anywhere.herokuapp.com/'
     const url = `https://api.stocktwits.com/api/2/streams/symbol/${this.state.name}.json`;
 
     if (this.state.name === '') {
       console.log('No stocks searched');
     } else {
-      fetch(url)
+      fetch(proxy + url)
         .then((response) => response.json())
         .then((data) => this.setState({
           tweets: data.messages,
